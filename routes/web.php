@@ -3,5 +3,5 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    echo 'Hello World';
+    // Retornar a view teste.blade.php
 })->name('home');
