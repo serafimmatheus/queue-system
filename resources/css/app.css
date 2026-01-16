@@ -18,6 +18,11 @@
     @apply text-lg font-medium text-zinc-600;
 }
 
+/* text colors */
+.text-danger {
+    @apply text-red-500;
+}
+
 hr {
     @apply border-zinc-300;
 }
