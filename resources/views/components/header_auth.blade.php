@@ -13,7 +13,7 @@
             <span><i class="fa-regular fa-circle-user me-2"></i>{{ auth()->user()->email }}</span>
         </button>
         <div id="dropdownMenu" class="hidden absolute right-4 mt-2 w-48 bg-white text-zinc-700 rounded-xl shadow-lg z-10 p-2">
-            <a href="#" class="block px-4 py-2 rounded-lg hover:bg-zinc-200"><i class="fa-solid fa-unlock-keyhole me-2"></i>Alterar senha</a>
+            <a href="{{ route('change.password') }}" class="block px-4 py-2 rounded-lg hover:bg-zinc-200"><i class="fa-solid fa-unlock-keyhole me-2"></i>Alterar senha</a>
             <hr class="my-2">
             <a href="{{ route('logout') }}" class="block px-4 py-2 rounded-lg hover:bg-zinc-200"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Sair</a>
         </div>
