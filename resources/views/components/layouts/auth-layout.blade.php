@@ -9,7 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-zinc-200">
-    <main class="container">
+    <x-header_auth />
+    <main class="container mt-8">
         {{ $slot }}
     </main>
 </body>
