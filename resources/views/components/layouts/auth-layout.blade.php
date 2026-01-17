@@ -6,11 +6,13 @@
     <title>{{ config('app.name') }}</title>
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dataTables/datatables.min.css') }}">
     @vite('resources/css/app.css')
+    <script src="{{ asset('assets/dataTables/datatables.min.js') }}"></script>
 </head>
 <body class="bg-zinc-200">
     <x-snackBar />
-    
+
     <x-header_auth />
 
     <x-header_guest />
