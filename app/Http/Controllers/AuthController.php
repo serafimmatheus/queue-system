@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -25,11 +27,37 @@ class AuthController extends Controller
             ]
         );
 
-        echo 'Formulario de Login enviado';
+        $user = User::where('email', trim($request->username))
+            ->where('active', true)
+            ->whereNull('deleted_at')
+            ->first();
+
+        if (!$user) {
+            return redirect()->back()->withErrors(['username' => 'Usuário ou senha inválidos.']);
+        }
+
+        if (!Hash::check($request->password, $user->password)) {
+            return redirect()->back()->withErrors(['username' => 'Usuário ou senha inválidos.']);
+        }
+
+        $this->loginUser($user);
+
+        return redirect()->route('home');
+    }
+
+    private function loginUser($user)
+    {
+        $user->last_login = now();
+        $user->code = null;
+        $user->code_expiration = null;
+        $user->save();
+
+        auth()->login($user);
     }
 
     public function logout()
     {
-        echo 'Logout';
+        auth()->logout();
+        return redirect()->route('login');
     }
 }

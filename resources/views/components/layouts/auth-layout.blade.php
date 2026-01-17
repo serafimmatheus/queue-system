@@ -9,6 +9,8 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-zinc-200">
-    {{ $slot }}
+    <main class="container">
+        {{ $slot }}
+    </main>
 </body>
 </html>
