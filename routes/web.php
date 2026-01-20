@@ -15,4 +15,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change.password');
     Route::post('/change-password', [AuthController::class, 'changePasswordSubmit'])->name('change.password.submit');
+
+    Route::get('/queue/view/{id}', [MainController::class, 'viewQueue'])->name('queue.view');
+    Route::post('/queue/duplicate/{id}', [MainController::class, 'duplicateQueue'])->name('queue.duplicate');
+    Route::post('/queue/edit/{id}', [MainController::class, 'editQueueSubmit'])->name('queue.edit.submit');
+    Route::post('/queue/delete/{id}', [MainController::class, 'deleteQueueSubmit'])->name('queue.delete.submit');
 });

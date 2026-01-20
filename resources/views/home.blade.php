@@ -15,15 +15,16 @@
     <table class="" id="tabela">
       <thead class="bg-black text-white">
         <tr>
-          <th class="text-xs w-3/14">Nome</th>
-          <th class="text-xs w-3/14">Serviço</th>
+          <th class="text-xs w-2/14">Nome</th>
+          <th class="text-xs w-2/14">Serviço</th>
           <th class="text-xs w-2/14">Balcão</th>
-          <th class="text-xs w-2/14">Estado</th>
+          <th class="text-xs w-1/14 text-center">Estado</th>
           <th class="text-xs w-1/14 text-center">Tickets</th>
           <th class="text-xs w-1/14 text-center">Ignorados</th>
           <th class="text-xs w-1/14 text-center">Não atendidos</th>
           <th class="text-xs w-1/14 text-center">Atendidos</th>
           <th class="text-xs w-1/14 text-center">Em espera</th>
+          <th class="w-2/14"></th>
         </tr>
       </thead>
       <tbody>
@@ -32,12 +33,42 @@
               <td>{{ $queue->name }}</td>
               <td>{{ $queue->service_name }}</td>
               <td>{{ $queue->service_desk }}</td>
-              <td>{{ $queue->status == 'active' ? 'Ativo' : 'Inativo' }}</td>
+              <td>
+                @switch($queue->status)
+                  @case('active')
+                    <i class="fa fa-check text-green-500" title="Ativo"></i>
+                    @break
+                  @case('inactive')
+                    <i class="fa fa-times text-red-500" title="Inativo"></i>
+                    @break
+                  @case('done')
+                    <i class="fa fa-check-circle text-blue-500" title="Finalizado"></i>
+                    @break
+                  @default
+                    <i class="fa fa-question-circle text-gray-500" title="Pendente"></i>
+                    @break
+                @endswitch
+              </td>
               <td>{{ $queue->total_tickets }}</td>
               <td>{{ $queue->total_dismissed }}</td>
               <td>{{ $queue->total_not_attended }}</td>
               <td>{{ $queue->total_called }}</td>
               <td>{{ $queue->total_waiting }}</td>
+              <td class="flex justify-end gap-2">
+                <a href="{{ route('queue.view', ['id' => Crypt::encrypt($queue->id)]) }}" class="text-black" title="Visualizar">
+                  <i class="fa fa-eye"></i>
+                </a>
+                <a href="#" class="text-black" title="Duplicar">
+                  <i class="fa fa-copy"></i>
+                </a>
+                <a href="#" class="text-black" title="Editar">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a href="#" class="text-black" title="Excluir">
+                  <i class="fa fa-trash"></i>
+                </a>
+                
+              </td>
             </tr>
           @endforeach
       </tbody>
