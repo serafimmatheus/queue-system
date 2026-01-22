@@ -34,20 +34,7 @@
               <td>{{ $queue->service_name }}</td>
               <td>{{ $queue->service_desk }}</td>
               <td>
-                @switch($queue->status)
-                  @case('active')
-                    <i class="fa fa-check text-green-500" title="Ativo"></i>
-                    @break
-                  @case('inactive')
-                    <i class="fa fa-times text-red-500" title="Inativo"></i>
-                    @break
-                  @case('done')
-                    <i class="fa fa-check-circle text-blue-500" title="Finalizado"></i>
-                    @break
-                  @default
-                    <i class="fa fa-question-circle text-gray-500" title="Pendente"></i>
-                    @break
-                @endswitch
+                {!! getQueueStatus($queue->status) !!}
               </td>
               <td>{{ $queue->total_tickets }}</td>
               <td>{{ $queue->total_dismissed }}</td>
